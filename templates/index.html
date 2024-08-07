@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football clubs transfer values analysis</title>
+</head>
+<body>
+    <!-- Header Section -->
+    <h1>Football clubs transfer values analysis</h1>
+
+    <form action="/run_analysis" method="post" id="analysisForm">
+        <!-- Input for Number of Clubs -->
+        <label for="num_clubs">Number of Clubs to Analyze:</label>
+        <input type="number" name="num_clubs" id="num_clubs" required>
+        <br>
+        <!-- Example Text for URL Format -->
+        <span id="exampleText" style="display: none; margin-bottom: 5px; margin-top: 5px"> URL example: https://www.transfermarkt.com/fc-arsenal/startseite/verein/11</span>
+
+        <!-- URL Input Section -->
+        <div id="urlsInput" style="display: none;">
+            <label for="club_url_1">Enter URL for Club 1:</label>
+            <input type="url" name="club_url_1" id="club_url_1" required>
+            <br>
+        </div>
+        <!-- Run Button Section -->
+        <div id="runButton" style="display: none;">
+            <button type="submit">Run and download</button>
+        </div>
+    </form>
+
+    <!-- JavaScript Section for Dynamic Input Field Generation -->
+    <script>
+        document.getElementById('num_clubs').addEventListener('input', function() {
+            var numClubs = this.value;
+            var urlsInput = document.getElementById('urlsInput');
+            var runButton = document.getElementById('runButton');
+            var exampleText = document.getElementById('exampleText');
+
+            // Show the example text only if the number of clubs is provided
+            exampleText.style.display = numClubs > 0 ? 'block' : 'none';
+
+            urlsInput.innerHTML = '';  // Clear previous inputs
+            for (var i = 1; i <= numClubs; i++) {
+                var label = document.createElement('label');
+                label.textContent = 'Enter URL for Club ' + i + ':';
+
+                var input = document.createElement('input');
+                input.type = 'url';
+                input.name = 'club_url_' + i;
+                input.required = true;
+
+                var lineBreak = document.createElement('br');
+
+                urlsInput.appendChild(label);
+                urlsInput.appendChild(input);
+                urlsInput.appendChild(lineBreak);
+            }
+
+            // Show the "Run Analysis" button when the user provides the number of clubs
+            runButton.style.display = numClubs > 0 ? 'block' : 'none';
+            urlsInput.style.display = numClubs > 0 ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>

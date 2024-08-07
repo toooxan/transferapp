@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload .png Files</title>
+</head>
+<body>
+    <!-- Header Section -->
+    <h1>Upload .png Files</h1>
+    <!-- File Upload Form -->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <!-- Label for File Input -->
+        <label for="file">Choose .png Files to Upload:</label>
+        <!-- Input for File Selection -->
+        <input type="file" name="file" id="file" accept=".png" multiple>
+        <!-- Upload Button -->
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>
